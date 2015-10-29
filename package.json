@@ -1,0 +1,27 @@
+{
+  "name": "mongo-object-history",
+  "version": "0.0.1",
+  "description": "Object history tracking for mongodb and nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ucd-cws/mongo-object-history.git"
+  },
+  "keywords": [
+    "mongodb",
+    "object",
+    "history"
+  ],
+  "author": "Justin Merz <jrmerz@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ucd-cws/mongo-object-history/issues"
+  },
+  "homepage": "https://github.com/ucd-cws/mongo-object-history#readme",
+  "dependencies": {
+    "deep-diff": "^0.3.3"
+  }
+}
