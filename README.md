@@ -7,8 +7,9 @@ Tracks objects by type and id.  stores
  - object identifier
  - timestamp
  - object diff
+
 If the object is new
- - initial object
+ - initial object state
  - created flag
 
 ## Configure
@@ -17,6 +18,7 @@ If the object is new
 var history = require('mongo-object-history');
 
 var collection = mongo.collection('widgets');
+var historyCollection = mongo.collection('history');
 
 var config = {
   get : {
@@ -25,7 +27,9 @@ var config = {
       collection.findOne(id, callback);
     }
   },
-  collection : collection
+
+  // provide the history collection as well
+  collection : historyCollection
 }
 history.init(config);
 ```
@@ -41,8 +45,10 @@ var newWidget = {
 }
 var user = 'foobar-user';
 
+// type, new object, user, callback
 history.track('widget', newWidget, user, function(err, result){
   // object is tracked
+
   // err is either custom error string or mongodb error
   // result is mongodb response from insert
 });
