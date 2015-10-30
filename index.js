@@ -7,7 +7,7 @@ var idParam = 'id';
 var trackMongoId = false;
 
 function init(c) {
-  c = config;
+  config = c;
 
   if( config.id ) {
     idParam = config.id;
