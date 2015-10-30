@@ -23,6 +23,10 @@ function track(type, object, user, callback) {
     return callback('Object has no id');
   }
 
+  if( !config.get[type] ) {
+    return callback(type+' history get handler not defined');
+  }
+
   config.get[type](id, function(err, currentObject){
     if( err ) {
       callback(err);
@@ -34,6 +38,8 @@ function track(type, object, user, callback) {
       datetime : new Date(),
       type : type
     };
+
+    onObjectGet(history, object, currentObject, callback);
   });
 }
 
