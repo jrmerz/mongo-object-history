@@ -43,6 +43,26 @@ function track(type, object, user, callback) {
   });
 }
 
+function remove(type, id, user, callback) {
+  if( !id ) {
+    return callback('id required');
+  }
+
+  if( !config.get[type] ) {
+    return callback(type+' history get handler not defined');
+  }
+
+  var history = {
+    id : id,
+    user : user,
+    datetime : new Date(),
+    type : type,
+    deleted : true
+  };
+
+  config.collection.insert(history, callback);
+}
+
 function onObjectGet(history, newObject, currentObject, callback) {
   if( currentObject === null ) {
     history.created = true;
@@ -65,5 +85,6 @@ function onObjectGet(history, newObject, currentObject, callback) {
 
 module.exports = {
   init : init,
-  track : track
+  track : track,
+  delete : remove
 };
