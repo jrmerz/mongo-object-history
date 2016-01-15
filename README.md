@@ -53,3 +53,8 @@ history.track('widget', newWidget, user, function(err, result){
   // result is mongodb response from insert
 });
 ```
+
+## Testing Flag
+
+If your tracked object is marked with object.testing === true, a history.testing = true
+flag will be marked on the object as well.

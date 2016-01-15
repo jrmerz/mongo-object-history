@@ -39,6 +39,10 @@ function track(type, object, user, callback) {
       type : type
     };
 
+    if( object.testing === true ) {
+      history.testing = true;
+    }
+
     onObjectGet(history, object, currentObject, callback);
   });
 }
@@ -60,7 +64,17 @@ function remove(type, id, user, callback) {
     deleted : true
   };
 
-  config.collection.insert(history, callback);
+  config.collection.findOne({id: id}, function(err, result){
+    if( !err && result ) {
+      if( result.testing === true ) {
+        history.testing = true;
+      }
+    }
+
+    // TODO: should we ignore this call if object never existed in the system?
+
+    config.collection.insert(history, callback);
+  });
 }
 
 function onObjectGet(history, newObject, currentObject, callback) {
